@@ -1,0 +1,416 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body, h1, h2, h3, h4, h5,
+h6, ul, li, a, p {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background: url("../img/Future_of_Jobs-01.jpg") no-repeat;
+  background-size: cover;
+}
+
+@font-face {
+  font-family: 'BEYNO';
+  src:  url('../fonts/BEYNO.ttf') format('truetype'),
+        url('../fonts/BEYNO.otf');
+}
+
+
+
+@keyframes rotatePulseClock {
+  0% {
+    transform-origin: center center;
+    transform: rotate(-360deg) scale(1);
+  }
+  50% {
+    transform-origin: center center;
+    transform: rotate(-180deg) scale(0.8);
+  }
+  100% {
+    transform-origin: center center;
+    transform: rotate(0) scale(1);
+  }
+}
+@keyframes rotatePulseAnticlock {
+  0% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: rotate(0deg) scale(1);
+  }
+  50% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: rotate(-180deg) scale(0.8);
+  }
+  100% {
+    -webkit-transform-origin: center center;
+    -webkit-transform: rotate(-360deg) scale(1);
+  }
+}
+@keyframes fade {
+  0% {
+    width: 0px;
+    transform-origin: center center;
+    transform: scale(0);
+  }
+  100% {
+    width: 45px;
+    transform-origin: center center;
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes rotateInClock {
+  0% {
+    -webkit-transform-origin:center;
+    transform-origin:center;
+    -webkit-transform:rotate3d(0,0,1,-200deg);
+    transform:rotate3d(0,0,1,-200deg);
+    opacity:0;
+  }
+  100% {
+    -webkit-transform-origin:center;
+    transform-origin:center;
+    -webkit-transform:none;
+    transform:none;
+    opacity:1;
+  }
+}
+@keyframes rotateInClock {
+  0% {
+    -webkit-transform-origin:center;
+    transform-origin:center;
+    -webkit-transform:rotate3d(0,0,1,-200deg);
+    transform:rotate3d(0,0,1,-200deg);
+    opacity:0;
+  }
+  100% {
+    -webkit-transform-origin:center;
+    transform-origin:center;
+    -webkit-transform:none;
+    transform:none;
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes rotateInAntiClock {
+  0% {
+    -webkit-transform-origin:center;
+    transform-origin:center;
+    -webkit-transform:rotate3d(0,0,1,200deg);
+    transform:rotate3d(0,0,1,200deg);
+    opacity:0;
+  }
+  100% {
+    -webkit-transform-origin:center;
+    transform-origin:center;
+    -webkit-transform:none;
+    transform:none;
+    opacity:1;
+  }
+}
+@keyframes rotateInAntiClock {
+  0% {
+    -webkit-transform-origin:center;
+    transform-origin:center;
+    -webkit-transform:rotate3d(0,0,1,200deg);
+    transform:rotate3d(0,0,1,200deg);
+    opacity:0;
+  }
+  100% {
+    -webkit-transform-origin:center;
+    transform-origin:center;
+    -webkit-transform:none;
+    transform:none;
+    opacity:1;
+  }
+}
+
+@keyframes swing {
+  20% {
+    -webkit-transform: rotate3d(0,0,1,15deg);
+    transform: rotate3d(0,0,1,15deg);
+  }
+  40% {
+    -webkit-transform: rotate3d(0,0,1,-10deg);
+    transform: rotate3d(0,0,1,-10deg);
+  }
+  60% {
+    -webkit-transform: rotate3d(0,0,1,5deg);
+    transform: rotate3d(0,0,1,5deg);
+  }
+  80% {
+    -webkit-transform: rotate3d(0,0,1,-5deg);
+    transform: rotate3d(0,0,1,-5deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0,0,1,0deg);
+    transform: rotate3d(0,0,1,0deg);
+  }
+}
+
+/* Variable Declaration */
+$colors: 	#360745, #D61C59, #E7D84B, #EFEAC5, #1B8798;
+$max: 5;
+$stroke-step: 7%;
+
+@keyframes stroke-offset {
+  50% {
+    stroke-dashoffset: $stroke-step * $max * 3;
+    stroke-dasharray: 0 $stroke-step * $max * 1;
+  }
+}
+
+.animations {
+  width: 100%;
+  height: 100%;
+  display: table;
+  .text-container {
+    width: 100%;
+    height: 100%;
+    font: 4.2em Arial;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    svg {
+      width: 75%;
+      height: 50%;
+      margin: 0 auto;
+    }
+    .text-copy {
+      fill: none;
+      stroke: white;
+      stroke-dasharray: $stroke-step $stroke-step * ($max - 1);
+      stroke-width: 4px;
+      animation: stroke-offset 11s infinite linear;
+      animation-delay: 3s;
+      @for $item from 1 through $max {
+        $stroke-color: nth($colors, $item);
+        &:nth-child(#{$item}) {
+          stroke: $stroke-color;
+          stroke-dashoffset: $stroke-step * $item;
+        }
+      }
+    }
+  }
+  .logo {
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    z-index: 1;
+    img {
+      width: 100px;
+      animation-name: rotateInClock;
+      animation-iteration-count: 1;
+      animation-duration: 2s;
+    }
+  }
+  .careernet-logo {
+    position: absolute;
+    right: 13%;
+    top: 10%;
+    z-index: 1;
+    img {
+      width: 175px;
+      animation-name: rotateInAntiClock;
+      animation-iteration-count: 1;
+      animation-duration: 2s;
+    }
+  }
+  .robot-orange {
+    position: absolute;
+    right: 10%;
+    bottom: 2%;
+    z-index: 1;
+    img {
+      width: 100px;
+      -webkit-transform-origin: center center;
+      transform-origin: center center;
+      -webkit-animation-name: swing;
+      animation-name: swing;
+      animation-iteration-count: infinite;
+      animation-duration: 1s;
+      animation-direction: alternate-reverse;
+    }
+  }
+  .robot-red {
+    position: absolute;
+    left: 5%;
+    bottom: 8%;
+    z-index: 2;
+    img {
+      width: 175px;
+    }
+  }
+  .robot-blue {
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    z-index: 1;
+    img {
+      width: 100px;
+      -webkit-transform-origin: center center;
+      transform-origin: center center;
+      -webkit-animation-name: swing;
+      animation-name: swing;
+      animation-iteration-count: infinite;
+      animation-duration: 1s;
+      animation-direction: alternate;
+    }
+  }
+  .robot-purple {
+    position: absolute;
+    right: 14%;
+    z-index: 2;
+    img {
+      width: 135px;
+    }
+  }
+  .star-orange {
+    position: absolute;
+    right: 50%;
+    top: 25%;
+    z-index: 1;
+    img {
+      width: 45px;
+      animation-duration: 5s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-name: rotatePulseAnticlock;
+    }
+  }
+  .star-blue {
+    position: absolute;
+    right: 30%;
+    top: 18%;
+    z-index: 1;
+    img {
+      width: 25px;
+      animation-duration: 5s;
+      animation-fill-mode: none;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-name: rotatePulseClock;
+    }
+  }
+  .star-yellow-one {
+    position: absolute;
+    right: 8%;
+    top: 14%;
+    z-index: 1;
+    img {
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      filter: FlipH;
+      -ms-filter: "FlipH";
+      width: 30px;
+      animation-duration: 5s;
+      animation-fill-mode: none;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-name: rotatePulseAnticlock;
+    }
+  }
+  .star-yellow-two {
+    position: absolute;
+    bottom: 8%;
+    right: 30%;
+    z-index: 1;
+    img {
+      width: 40px;
+    }
+  }
+  .star-yellow-three {
+    position: absolute;
+    bottom: 28%;
+    left: 7%;
+    z-index: 1;
+    img {
+      width: 35px;
+      animation-duration: 5s;
+      animation-fill-mode: none;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-name: rotatePulseClock;
+    }
+  }
+  .star-yellow-four {
+    position: absolute;
+    top: 45%;
+    left: 15%;
+    z-index: 1;
+    img {
+      -moz-transform: scaleX(-1);
+      -o-transform: scaleX(-1);
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      filter: FlipH;
+      -ms-filter: "FlipH";
+      width: 30px;
+      animation-duration: 5s;
+      animation-fill-mode: none;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-name: rotatePulseAnticlock;
+    }
+  }
+  .star-yellow-five {
+    position: absolute;
+    top: 40%;
+    left: 8%;
+    z-index: 1;
+    img {
+      width: 30px;
+
+      animation-duration: 5s;
+      animation-fill-mode: none;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-name: rotatePulseClock;
+    }
+  }
+  .exclamation {
+    position: absolute;
+    top: 55%;
+   left: 15%;
+   z-index: 1;
+   img {
+     width: 45px;
+     animation-name: fade;
+     animation-iteration-count: 1;
+     animation-timing-function: ease-in-out;
+     animation-duration: 1s;
+   }
+  }
+  .boing-green {
+    position: absolute;
+    top: 60%;
+    right: 8%;
+    z-index: 1;
+    img {
+      width: 35px;
+      animation-name: fade;
+      animation-iteration-count: infinite;;
+      animation-timing-function: ease-in-out;
+      animation-direction: alternate;
+      animation-duration: 2s;
+    }
+  }
+  .spring-purple {
+    position: absolute;
+    top: 40%;
+    left: 11%;
+    z-index: 1;
+    img {
+      width: 60px;
+    }
+  }
+}
